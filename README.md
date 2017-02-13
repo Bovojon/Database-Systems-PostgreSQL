@@ -44,3 +44,9 @@ SELECT MovieStar.name, MovieExec.name
 FROM MovieStar, MovieExec
 WHERE MovieStar.address = MovieExec.address;
 ```
+
+`psql -d database_db -f file.sql > file.output`
+
+`\! clear`
+
+`\i filename.sql`
