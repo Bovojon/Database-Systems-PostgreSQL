@@ -9,10 +9,8 @@ order by maker, speed;
 SELECT model, price
 FROM product, pc, laptop, printer
 WHERE product.maker = 'B';
-
-/*
-Using unions:
-
+----------------------------
+--Using unions:
 	(select product.model, pc.price 
 	from product, pc
 	where product.maker = 'B' and product.model = pc.model)
@@ -24,8 +22,7 @@ UNION
 	(select product.model, printer.price 
 	from product, printer
 	where product.maker = 'B' and product.model = printer.model);
-
-*/
+	
 
 -- c) Find those manufacturers that sell Laptops, but not PC's.
 	(SELECT distinct maker 
@@ -36,9 +33,8 @@ EXCEPT
 	 from product, pc
 	 WHERE product.model = pc.model)
 order by maker;
-
-/* 
-Shorter way: 
+----------------------------
+-- Shorter way: 
 	(select distinct maker
 	 from product
 	 where type = 'laptop')
@@ -46,7 +42,7 @@ except
 	(select distinct maker
 	 from product
 	 where type='pc');
-*/
+
 
 --d) Find those hard-disk sizes that occur in two or more PC's.
 select distinct hd
@@ -54,8 +50,8 @@ from pc
 group by hd
 order by hd
 having count(*) >= 2;
-
-/*
+----------------------------
+-- Another way: 
 select distinct hd
 from (
 	(select hd from pc)
@@ -64,14 +60,12 @@ except all
 ) 
 as P;
 
-*/
-
-
 
 -- e) Find those pairs of PC models that have both the same speed and RAM. A pair should be listed only once.
 select pc1.model, pc2.model
 from pc pc1, pc pc2
 where pc1.speed = pc2.speed and pc1.ram = pc2.ram and pc1.model < pc2.model;
+
 
 -- f) Find those manufacturers of at least two different computers (PC's or laptops) with speeds of at least 3.0.
 select distinct maker
@@ -88,11 +82,8 @@ from (
 		 from product)
 	)
 	as P;
-	
-	
-/* 
-Another way to do f:
-
+----------------------------
+-- Another way to do f:
 select distinct p.maker
 from product p, product p1
 where p.maker = p1.maker and p.model != p1.model and p.model in 
@@ -111,8 +102,6 @@ and p1.model in
 		 select laptop.model
 		 from laptop
 		 where laptop.speed >= 3);
-
-*/
 	
 	
 		
