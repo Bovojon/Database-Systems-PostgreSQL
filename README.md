@@ -1,37 +1,3 @@
-# Commands to interact with the PostgeSQL server
+# Backup of PSQL files from Database Systems
 
-* `sudo su - postgres`
-
-* `ps -ef | grep postgres`
-
-* To list all the databases: `\list`
-
-* To create a database: `CREATE DATABASE database_name;`
-
-* To use another databse: `\c database_name`
-
-* To view all users: `\du`
-
-* To find where change peer connection to md5, change file: `/etc/postgresql/9.3/main/pg_hba.conf`
-
-* To login to a database as a user: `psql database_name user_name`
-
-* To restart psql server: `sudo service postgresql restart`
-
-* To check login info: `\conninfo`
-
-* To restart psql server: `/etc/init.d/postgresql restart` or `sudo service postgresql restart`
-
-* To fix problem of *FATAL:  Peer authentication failed for user "user_name"*, run `psql user_name  -h 127.0.0.1 -d db_name`
-
----------------------------------------
-### Other useful Commands:
-`psql -d database_db -f file.sql > file.output`
-
-`\! clear`
-
-`\i filename.sql`
-
-`begin transaction`
-Then:
-`rollback transaction` or `commit transaction`
+The files consist of my solutions to exercises from **A First Course in Database Systems (3rd Edition)**.
